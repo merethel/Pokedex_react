@@ -5,8 +5,8 @@ export default function App() {
     return (
         <>
             <nav>
-                <Link to="/">Pokemons</Link>
-                <Link to="/information">Information</Link>
+                <Link to="/">Pokédex</Link>
+                <Link to="/information">Search for Pokémon</Link>
             </nav>
             <Outlet />
         </>
