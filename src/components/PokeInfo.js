@@ -13,11 +13,9 @@ const PokeInfo = ({ data }) => {
                             {
                                 data.abilities.map(poke => {
                                     return (
-                                        <>
-                                            <div className="group" key={poke.id}>
-                                                <h3>{poke.ability.name}</h3>
-                                            </div>
-                                        </>
+                                        <div className="group" key={poke.ability.url}>
+                                            <h3>{poke.ability.name}</h3>
+                                        </div>
                                     )
                                 })
                             }
@@ -26,12 +24,9 @@ const PokeInfo = ({ data }) => {
                             {
                                 data.stats.map(poke => {
                                     return (
-                                        <>
-                                        <div className="statBarsDiv">
-                                            {poke.stat.name}:<ProgressBar bgcolor="orange" progress={poke.base_stat}  height={10} />
+                                        <div className="statBarsDiv" key={poke.stat.url}>
+                                            {poke.stat.name}:<ProgressBar bgcolor="orange" progress={poke.base_stat} height={10} />
                                         </div>
-
-                                        </>
                                     )
                                 })
                             }

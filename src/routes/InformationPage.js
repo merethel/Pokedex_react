@@ -4,7 +4,6 @@ import PokeInfo from "../components/PokeInfo"
 const InformationPage = () => {
     const [pokemon, setPokemon] = useState("")
     const [pokemonData, setPokemonData] = useState([])
-    const [pokemonType, setPokemonType] = useState("")
 
     const getPokemon = async () => {
         const pokemonArray = []
@@ -14,10 +13,6 @@ const InformationPage = () => {
             const pkmn = await response.json()
 
             pokemonArray.push(pkmn)
-
-            const primaryType = pkmn.types[0].type.name
-            const secondaryType = pkmn.types[1]?.type.name
-            setPokemonType(secondaryType ? `${primaryType}/${secondaryType}` : primaryType)
             setPokemonData(pokemonArray)
         } catch (error) {
             console.log(error)
@@ -47,7 +42,9 @@ const InformationPage = () => {
             </form>
             <div className="barsInformationPageDiv">
             {pokemonData.map((data) => {
-                return <PokeInfo data={data}/>})}
+                return <div key={data.id}>
+                    <PokeInfo data={data}/>
+                    </div>})}
             </div>
         </div>
     )

@@ -12,14 +12,14 @@ const ProgressBar = ({bgcolor,progress,height}) => {
       
       const Childdiv = {
         height: '100%',
-        width: `${(progress/255)*100}%`, //bonus info!!: max base-stat for en pokemon er 255, som blissey har, som den eneste pokemon, i sin hp
+        width: `${(progress/255)*100}%`, //255 fordi det er max stat (   says the internet :)   )
         backgroundColor: bgcolor,
         borderRadius:40,
         textAlign: 'right'
       }
 
     return (
-    <div classname="progressBar" style={Parentdiv}>
+    <div style={Parentdiv}>
       <div style={Childdiv}>
       </div>
     </div>

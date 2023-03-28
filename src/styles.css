@@ -104,11 +104,6 @@ body {
   margin-top: 2rem;
 }
 
-.progressBar{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .btn-group {
   display: flex;
