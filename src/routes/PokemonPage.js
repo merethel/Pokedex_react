@@ -17,6 +17,13 @@ const PokemonPage = () => {
         setLoading(true)
         const res = await axios.get(currentPageUrl, {
             cancelToken: new axios.CancelToken(c=>cancel=c) //sørger for at siden ikke loader data flere gange og derfor overrider
+            /*når man bruger Create React App eller React version 18, så bliver useEffect() 
+            hook'en af en eller anden grund kaldt 2 gange, og cancelToken sørger for kun at kalde 
+            den én gang, og canceler eventuelle ekstra kald
+            
+            man kan løse dette ved at disable strict mode i index.js, men nu blev det lige sådan
+            her :)
+            */
         })
         setnextPageUrl(res.data.next)
         setprevPageUrl(res.data.previous)
@@ -26,10 +33,10 @@ const PokemonPage = () => {
 
     const getPokemon = async (res) => {
         res.map(async (item) => {
-            const result = await axios.get(item.url)
+            const result = await axios.get(item.url) 
             setPokemonData(state => {
                 state = [...state, result.data]
-                state.sort((a, b) => a.id > b.id ? 1 : -1)
+                state.sort((a, b) => a.id > b.id ? 1 : -1) //sørger for at sortere i rækkefølge af id
                 return state
             })
         })
@@ -37,8 +44,8 @@ const PokemonPage = () => {
 
     useEffect(() => { //pakker fetch ind i useEffect for at undgå re-render - det bliver altså kun kørt én gang, da vi ikke re-fetcher fra api'en
         pokeFun()
-        return () => cancel() //sørger for ikke at lave flere requests, og overrider eksisterende data
-        //nedenstående sørger for at fjerne missin dependency warning på [currentPageUrl]
+        return () => cancel() //sørger for ikke at lave flere rerenders end 1
+        //nedenstående sørger for at fjerne missing dependency warning på [currentPageUrl]
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPageUrl]) //hver gang currentPageUrl ændres, skal koden indeni reloades (altså når vi skifter side)
 
