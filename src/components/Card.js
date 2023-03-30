@@ -2,15 +2,18 @@ import React from "react"
 import typeColors from "../helpers/typeColors"
 
 const Card = ({ pokemon, infoPokemon }) => {
+    
     return (
 
         <>
             {
                 pokemon.map((item) => {
+                    const primaryType = item.types[0].type.name
+                    const secondaryType = item.types[1]?.type.name
                     return (
                         
                             <div className="card" key={item.id} onClick={() => infoPokemon(item)}
-                             style={{ backgroundColor: typeColors[item.types[0].type.name] }}>
+                             style={{ background: `linear-gradient(to right, ${typeColors[primaryType]}, ${typeColors[secondaryType ? secondaryType : primaryType]})` }}>
                                 <div className="numberDiv">
                                     <h2>#{item.id}</h2>
                                 </div>

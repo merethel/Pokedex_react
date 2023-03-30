@@ -1,5 +1,6 @@
 import React from "react"
 import ProgressBar from "./ProgressBar"
+import typeColors from "../helpers/typeColors"
 
 const PokeInfo = ({ data }) => {
     return (
@@ -9,11 +10,23 @@ const PokeInfo = ({ data }) => {
                     <>
                         <h1>{data.name}</h1>
                         <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`} alt={data.name + "-image"} />
+                        <div className="types">
+                            {
+                                data.types.map(poke => {
+                                    return (
+                                        <div className="group" key={poke.type.url + data.name} 
+                                        style={{ backgroundColor: typeColors[poke.type.name] }}>
+                                            <h3>{poke.type.name}</h3>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
                         <div className="abilities">
                             {
                                 data.abilities.map(poke => {
                                     return (
-                                        <div className="group" key={poke.ability.url}>
+                                        <div className="ability" key={poke.ability.url}>
                                             <h3>{poke.ability.name}</h3>
                                         </div>
                                     )
