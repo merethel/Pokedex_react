@@ -13,6 +13,7 @@ const PokemonPage = () => {
     const [pokeDex, setPokeDex] = useState()
     let cancel
 
+
     const pokeFun = async () => {
         setLoading(true)
         const res = await axios.get(currentPageUrl, {
@@ -21,8 +22,8 @@ const PokemonPage = () => {
             hook'en af en eller anden grund kaldt 2 gange, og cancelToken sørger for kun at kalde 
             den én gang, og canceler eventuelle ekstra kald
             
-            man kan løse dette ved at disable strict mode i index.js, men nu blev det lige sådan
-            her :)
+            man kan løse dette ved at disable strict mode i index.js kan jeg læse mig frem til,
+            men nu blev det lige sådan her :)
             */
         })
         setnextPageUrl(res.data.next)
